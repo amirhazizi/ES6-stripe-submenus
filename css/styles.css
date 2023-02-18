@@ -194,7 +194,7 @@ Stripe Styles
   height: 65%;
   top: 0;
   left: 0;
-  background: linear-gradient(rgb(58, 176, 255), rgb(194, 235, 246)), url(../images/hero.svg);
+  background: url(../images/hero.svg);
   background-blend-mode: darken;
   background-size: cover;
   background-repeat: no-repeat;
@@ -239,6 +239,10 @@ Stripe Styles
 
 /* nav media query */
 @media screen and (min-width: 800px) {
+  .hero::before {
+    background: linear-gradient(rgb(58, 176, 255), rgb(194, 235, 246)), url(../images/hero.svg) no-repeat;
+  }
+
   .nav-center {
     display: grid;
     grid-template-columns: auto 1fr auto;
