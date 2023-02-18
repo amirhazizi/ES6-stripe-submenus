@@ -36,11 +36,31 @@ sidebar.innerHTML = sublinks
 linkBtns.forEach((btn) => {
   btn.addEventListener("mouseover", function (e) {
     const text = e.currentTarget.textContent
+    const tempPage = sublinks.find(({ page }) => page === text)
     const tempBtn = e.currentTarget.getBoundingClientRect()
+
     const center = (tempBtn.left + tempBtn.right) / 2
     const bottom = tempBtn.bottom - 3
-    submenu.style.left = `${center}px`
-    submenu.style.top = `${bottom}px`
-    submenu.classList.add("show")
+    if (tempPage) {
+      const { links, page } = tempPage
+      submenu.style.left = `${center}px`
+      submenu.style.top = `${bottom}px`
+      submenu.classList.add("show")
+      submenu.innerHTML = `
+      <section>
+      <h4>${page}</h4>
+      <div class ="submenu-center col-2">
+      ${links
+        .map((link) => {
+          return `<a href="${link.url}">
+        <i class='${link.icon}'></i>${link.label}
+        </a>`
+        })
+        .join("")}
+
+      </div>
+      </section>
+      `
+    }
   })
 })
